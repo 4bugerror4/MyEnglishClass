@@ -16,30 +16,47 @@
 <body>
 	<header th:fragment="nav">
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" th:href="@{/}">My English Class</a>
+			<a class="navbar-brand" th:href="@{/}">Word Memory</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a></li>
+					<li class="nav-item active"><a class="nav-link" th:href="@{/}">홈 <span class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">리스트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">단어 추가</a></li>
 				</ul>
 
 				<div sec:authorize="!isAuthenticated()">
-					<a th:href="@{/auth/user/login}" class="btn btn-outline-success my-2 my-sm-0" type="button">로그인</a>
-					<a th:href="@{/auth/user/join}" class="btn btn-outline-success my-2 my-sm-0" type="button">회원가입</a>
+					<a th:href="@{/auth/user/login}" class="btn btn-outline-success my-2 my-sm-0" type="button">로그인</a> <a th:href="@{/auth/user/join}" class="btn btn-outline-success my-2 my-sm-0" type="button">회원가입</a>
 				</div>
-				
+
 				<div sec:authorize="isAuthenticated()">
-					<a th:href="@{/user/info}" class="btn btn-outline-success my-2 my-sm-0" type="button"><span sec:authentication="name"></a>
-					<a th:href="@{/logout}" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</a>
+					<a th:href="@{/user/info}" class="btn btn-outline-success my-2 my-sm-0" type="button"><span sec:authentication="name"></a> <a th:href="@{/logout}"
+						class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</a>
 				</div>
 			</div>
 		</nav>
 	</header>
-	
+
+	<form th:action="@{/}" method="GET" th:fragment="searchBar">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-10 col-lg-8">
+				<form class="card card-sm">
+					<div class="card-body row no-gutters align-items-center">
+						<div class="col">
+							<input class="form-control form-control-lg form-control-borderless" type="text" name="searchText" th:value="${param.searchText}" placeholder="찾으실 단어를 검색해주세요">
+						</div>
+						<div class="col-auto">
+							<button class="btn btn-lg btn-success" type="submit">검색</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!--end of col-->
+		</div>
+	</form>
+
 	<footer class="container" th:fragment="footer">
 		<p class="float-right">
 			<a href="#">Back to top</a>

@@ -1,6 +1,5 @@
 package com.bug.eng.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +27,6 @@ public class Word extends BaseEntity {
 	
 	private String type;
 	
-	@Column(unique = true)
 	private String eng;
 	private String meaning;
 	
