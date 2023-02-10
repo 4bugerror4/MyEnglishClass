@@ -41,9 +41,9 @@ public class WordServiceImpl implements WordService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Page<Word> findByTypeAndEngContainingOrMeaningContaining(Pageable pageable, String type, String eng, String meaning) {
+	public List<Word> findByEngContainingOrMeaningContaining(String eng, String meaning) {
 
-		return wordRepository.findByTypeAndEngContainingOrMeaningContaining(pageable, type, eng, meaning);
+		return wordRepository.findByEngContainingOrMeaningContaining(eng, meaning);
 	}
 
 }

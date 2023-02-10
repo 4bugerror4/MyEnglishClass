@@ -11,7 +11,7 @@ import com.bug.eng.entity.Word;
 public interface WordRepository extends JpaRepository<Word, Long>{
 	
 	List<Word> findByType(String type);
+	List<Word> findByEngContainingOrMeaningContaining(String eng, String meaning);
 	Page<Word> findByType(Pageable pageable, String type);
-	Page<Word> findByTypeAndEngContainingOrMeaningContaining(Pageable pageable, String type, String eng, String meaning);
-
+	
 }
