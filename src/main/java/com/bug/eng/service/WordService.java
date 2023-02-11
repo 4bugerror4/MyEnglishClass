@@ -14,4 +14,8 @@ public interface WordService {
 	List<Word> findByEngContainingOrMeaningContaining(String eng, String meaning);
 	Page<Word> findByType(Pageable pageable, String type);
 	
+	Page<Word> findByUserId(Pageable pageable, Long id);
+	List<Word> findByUserIdAndEngContaining(Long id, String eng);
+	List<Word> findByUserIdAndMeaningContaining(Long id, String meaning);
+	
 }

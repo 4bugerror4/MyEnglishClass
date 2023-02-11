@@ -20,8 +20,7 @@
 		<a th:href="@{/}"><img class="mb-4" src="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></a>
 		<h1 class="h3 mb-3 font-weight-normal">동사 추가</h1>
 		
-		<label for="type" class="sr-only">Type</label>
-		<input type="text" id="type" class="form-control" placeholder="분류" value="동사" readonly required>
+		<input type="hidden" id="type" class="form-control" placeholder="분류" value="동사" readonly required>
 		
 		<label for="eng" class="sr-only">Verb</label>
 		<input type="text" id="eng" class="form-control" placeholder="단어" required autofocus>
