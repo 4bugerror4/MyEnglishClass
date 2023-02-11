@@ -10,12 +10,15 @@ import com.bug.eng.entity.Word;
 public interface WordService {
 	
 	Word save(Word word);
+	Word modify(Word word);
 	List<Word> findByType(String type);
 	List<Word> findByEngContainingOrMeaningContaining(String eng, String meaning);
 	Page<Word> findByType(Pageable pageable, String type);
 	
 	Page<Word> findByUserId(Pageable pageable, Long id);
-	List<Word> findByUserIdAndEngContaining(Long id, String eng);
-	List<Word> findByUserIdAndMeaningContaining(Long id, String meaning);
+	Page<Word> findByUserIdAndEngContaining(Pageable pageable, Long id, String eng);
+	Page<Word> findByUserIdAndMeaningContaining(Pageable pageable, Long id, String meaning);
+	
+	Word findById(Long id);
 	
 }

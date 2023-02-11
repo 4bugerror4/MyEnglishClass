@@ -1,6 +1,7 @@
 package com.bug.eng.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +16,9 @@ public interface WordRepository extends JpaRepository<Word, Long>{
 	Page<Word> findByType(Pageable pageable, String type);
 	
 	Page<Word> findByUserId(Pageable pageable, Long id);
-	List<Word> findByUserIdAndEngContaining(Long id, String eng);
-	List<Word> findByUserIdAndMeaningContaining(Long id, String meaning);
+	Page<Word> findByUserIdAndEngContaining(Pageable pageable, Long id, String eng);
+	Page<Word> findByUserIdAndMeaningContaining(Pageable pageable, Long id, String meaning);
+	
+	Optional<Word> findById(Long id);
 	
 }

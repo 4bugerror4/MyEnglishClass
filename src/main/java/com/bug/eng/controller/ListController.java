@@ -73,10 +73,9 @@ public class ListController {
 	public String myList(Model model, @AuthenticationPrincipal PrincipalDetails principal, 
 			@PageableDefault(size = 12, sort = "id", direction = Direction.DESC) Pageable pageable, 
 			@RequestParam(defaultValue = "", required = false) String searchText,
-			String lang) {
+			@RequestParam(defaultValue = "eng", required = true) String lang) {
 		
 		Page<Word> myWord = null;
-		List<Word> mySearchWord = null;
 		
 		if (searchText.equals("") || searchText == null) {
 			
@@ -85,17 +84,24 @@ public class ListController {
 			
 		} else if (lang.equals("eng")) {
 			
-			mySearchWord = wordService.findByUserIdAndEngContaining(principal.getUser().getId(), searchText);
-			model.addAttribute("myWord", mySearchWord);
+			myWord = wordService.findByUserIdAndEngContaining(pageable, principal.getUser().getId(), searchText);
+			model.addAttribute("myWord", myWord);
 			
 		} else if (lang.equals("kor")) {
 			
-			mySearchWord = wordService.findByUserIdAndMeaningContaining(principal.getUser().getId(), searchText);
-			model.addAttribute("myWord", mySearchWord);
+			myWord = wordService.findByUserIdAndMeaningContaining(pageable, principal.getUser().getId(), searchText);
+			model.addAttribute("myWord", myWord);
 			
 		}
 		
+		int starPage = Math.max(1, myWord.getPageable().getPageNumber() - 4);
+		int endPage = Math.min(myWord.getTotalPages(), myWord.getPageable().getPageNumber() + 4);
+		
+		model.addAttribute("myWord", myWord);
+		model.addAttribute("startPage", starPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("principal", principal);
+		model.addAttribute("lang", lang);
 		
 		return "/lists/myList";
 	}
