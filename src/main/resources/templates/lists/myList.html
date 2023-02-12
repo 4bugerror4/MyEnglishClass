@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{fragments/common :: head('영어단어 - 명사')}">
+<head th:replace="~{fragments/common :: head('영어단어 - 나의 리스트')}">
 </head>
 <body>
 	<header th:replace="~{fragments/common :: nav}"> </header>
@@ -42,12 +42,12 @@
 
 			<div class="col-sm-3 mt-4" th:each="myWord : ${myWord}">
 				<div class="card">
-					<input type="hidden" th:value=${myWord.id} />
+					<input type="hidden" id="wordId" th:value=${myWord.id} />
 					<div class="card-header d-flex justify-content-between">
 						<span>타입: <span th:text=${myWord.type}>0</span></span>
 						<span>
 							<a th:href="@{/modify/{id}(id = ${myWord.id})}" class="badge badge-warning">수정</a>
-							<button class="badge badge-danger" style="border:none;">삭제</button>
+							<button th:onclick="wordIndex.wordDelete([[${myWord.id}]])" class="badge badge-danger" style="border:none;" type="button">삭제</button>
 						</span>
 					</div>
 					<div class="card-body">
@@ -84,6 +84,8 @@
 	<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript" th:src="@{/js/word.js}"></script>
 	
 	<script th:inline="javascript">
 		/*<![CDATA[*/

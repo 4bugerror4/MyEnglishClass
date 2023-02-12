@@ -20,5 +20,6 @@ public interface WordService {
 	Page<Word> findByUserIdAndMeaningContaining(Pageable pageable, Long id, String meaning);
 	
 	Word findById(Long id);
+	void deleteById(Long id);
 	
 }

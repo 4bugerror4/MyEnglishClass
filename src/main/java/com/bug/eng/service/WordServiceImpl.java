@@ -101,4 +101,11 @@ public class WordServiceImpl implements WordService {
 		});
 	}
 
+	@Transactional
+	@Override
+	public void deleteById(Long id) {
+		
+		wordRepository.deleteById(id);
+	}
+
 }

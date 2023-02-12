@@ -19,6 +19,4 @@ public interface WordRepository extends JpaRepository<Word, Long>{
 	Page<Word> findByUserIdAndEngContaining(Pageable pageable, Long id, String eng);
 	Page<Word> findByUserIdAndMeaningContaining(Pageable pageable, Long id, String meaning);
 	
-	Optional<Word> findById(Long id);
-	
 }

@@ -2,6 +2,8 @@ package com.bug.eng.controller.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +45,16 @@ public class WordApiController {
 		System.out.println(dto.getMeaning());
 		
 		wordService.modify(dto.toEntity(dto.getId(), dto.getType(), dto.getEng(), dto.getMeaning()));
+		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@DeleteMapping("/api/word/delete/{id}")
+	public ResponseDto<Integer> wordDelete(@PathVariable Long id) {
+		
+		System.out.println("id = " + id);
+		
+		wordService.deleteById(id);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
